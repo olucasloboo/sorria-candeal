@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Apresentação da identidade visual da Sorria Candeal.">
+</head>
+<body>
+<title>Sorria Candeal · Identidade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: cenas de tela cheia que deslizam umas sobre as outras como cartões, alternando areia e café.
+   A curva do sorriso é o fio condutor: linhas de construção na capa, divisórias e padrões. Visual único e intencional (sem modo escuro). */
+:root {
+  --dourado: #C29059;
+  --dourado-claro: #D9B07F;
+  --areia: #F1E0CE;
+  --marfim: #FAF6F0;
+  --cafe: #927056;
+  --cafe-escuro: #1C1612;
+  --preto: #131313;
+  --tinta: #2E231B;
+  --tinta-suave: #5A4636;
+  --rotulo: #7C5A3E;
+  --creme-suave: #CDB59B;
+
+  --display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --texto: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+  --raio-cena: 44px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --gl: max(16px, env(safe-area-inset-left, 0px));
+  --gr: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--preto);
+  color: var(--tinta);
+  font-family: var(--texto);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--preto); }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.02; margin: 0; text-wrap: balance; }
+p, figure { margin: 0; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; border-radius: 6px; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+.wrap {
+  width: 100%; max-width: 1480px; margin-inline: auto;
+  padding-left: max(32px, env(safe-area-inset-left, 0px));
+  padding-right: max(32px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap {
+    padding-left: max(clamp(72px, 13vw, 240px), env(safe-area-inset-left, 0px));
+    padding-right: max(clamp(72px, 13vw, 240px), env(safe-area-inset-right, 0px));
+  }
+}
+
+.rotulo { font-family: var(--texto); font-size: 12px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; }
+.rotulo::before { content: ""; display: inline-block; width: 28px; height: 1px; background: currentColor; vertical-align: middle; margin-right: 14px; opacity: .7; }
+
+/* ---------- Menu em pílula ---------- */
+.menu {
+  position: fixed; z-index: 50; left: 50%; transform: translateX(-50%);
+  top: calc(env(safe-area-inset-top, 0px) + 18px);
+  width: min(920px, calc(100% - 32px));
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 8px 8px 8px 22px;
+  background: rgba(19, 19, 19, .72);
+  backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(241, 224, 206, .12);
+  border-radius: 999px;
+  color: var(--areia);
+  box-shadow: 0 18px 50px rgba(0,0,0,.25);
+}
+.menu .marca { font-family: var(--display); font-size: 19px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+.menu nav { display: flex; gap: 2px; min-width: 0; }
+.menu nav a {
+  font-size: 11.5px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+  padding: 10px 14px; border-radius: 999px; color: var(--creme-suave); white-space: nowrap;
+  transition: background .35s var(--ease), color .35s var(--ease);
+}
+.menu nav a:hover { color: var(--areia); background: rgba(241,224,206,.08); }
+.menu nav a[aria-current="true"] { background: var(--areia); color: var(--preto); }
+.menu .cta {
+  font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+  padding: 12px 18px; border-radius: 999px; background: var(--dourado); color: var(--preto); white-space: nowrap;
+  transition: background .3s var(--ease), transform .3s var(--ease);
+}
+.menu .cta:hover { background: var(--dourado-claro); transform: translateY(-1px); }
+.menu .progresso { position: absolute; left: 26px; right: 26px; bottom: -1px; height: 1px; background: var(--dourado); transform-origin: left; transform: scaleX(0); }
+@media (max-width: 980px) { .menu nav { display: none; } }
+
+/* ---------- Capa: cena fixa ---------- */
+.cena { position: relative; background: var(--areia); }
+.palco { position: relative; min-height: 100vh; overflow: hidden; background: var(--areia); display: flex; align-items: center; }
+@media (min-width: 900px) {
+  .cena { height: 230vh; }
+  .palco { position: sticky; top: 0; height: 100vh; }
+}
+.brilho { position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60vw 50vh at -10% 110%, rgba(194,144,89,.28), transparent 70%),
+    radial-gradient(40vw 40vh at 110% -10%, rgba(146,112,86,.18), transparent 70%); }
+.palco .wrap { position: relative; display: grid; gap: 40px; padding-block: 140px 80px; }
+@media (min-width: 900px) { .palco .wrap { padding-block: 0; } }
+.capa-texto { position: relative; z-index: 2; max-width: 440px; display: grid; gap: 22px; color: var(--tinta); }
+.capa-texto .rotulo { color: var(--rotulo); }
+.capa-texto h1 { font-size: clamp(54px, 7.4vw, 112px); font-weight: 300; letter-spacing: -.01em; }
+.capa-texto h1 em { font-style: italic; color: var(--rotulo); }
+.capa-texto p { font-size: 17px; color: var(--tinta-suave); max-width: 30em; }
+.dica { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--rotulo); }
+.dica i { width: 1px; height: 38px; background: linear-gradient(var(--rotulo), transparent); animation: pinga 2.2s var(--ease) infinite; transform-origin: top; }
+@keyframes pinga { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+.simbolo { position: relative; width: 100%; }
+@media (min-width: 900px) {
+  .simbolo { position: absolute; right: clamp(72px, 13vw, 240px); top: 50%; width: min(44vw, 720px); transform: translateY(-50%); }
+}
+.simbolo img { position: relative; width: 100%; z-index: 1; }
+.guias { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 2; pointer-events: none; }
+.guias .g { fill: none; stroke: var(--rotulo); stroke-width: 1.6; stroke-dasharray: 1000; opacity: .55; }
+.guias .g.fina { opacity: .32; }
+.guias .gp { fill: var(--rotulo); opacity: 0; }
+
+/* ---------- Cenas em cartão ---------- */
+.painel {
+  position: relative; z-index: 1;
+  margin-top: calc(var(--raio-cena) * -1);
+  border-radius: var(--raio-cena) var(--raio-cena) 0 0;
+  padding-block: clamp(140px, 17vw, 280px);
+  transform-origin: 50% 0;
+  box-shadow: 0 -30px 60px rgba(0,0,0,.12);
+  overflow: hidden;
+}
+.painel.escuro { background: var(--cafe-escuro); color: var(--areia); }
+.painel.areia { background: var(--areia); color: var(--tinta); }
+.painel.marfim { background: var(--marfim); color: var(--tinta); }
+.painel.preto { background: var(--preto); color: var(--areia); }
+.painel.dourado { background: var(--dourado); color: var(--cafe-escuro); }
+.painel.cafe { background: var(--cafe); color: var(--areia); }
+.escuro .rotulo, .preto .rotulo { color: var(--dourado); }
+.areia .rotulo, .marfim .rotulo { color: var(--rotulo); }
+.dourado .rotulo { color: var(--cafe-escuro); }
+
+.titulo { font-size: clamp(42px, 6vw, 92px); font-weight: 300; letter-spacing: -.01em; }
+.titulo em { font-style: italic; }
+.escuro .titulo em, .preto .titulo em { color: var(--dourado); }
+.areia .titulo em, .marfim .titulo em { color: var(--rotulo); }
+.palavra { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.palavra > span { display: inline-block; will-change: transform; }
+
+.texto { font-size: 18px; max-width: 34em; }
+.escuro .texto, .preto .texto { color: var(--creme-suave); }
+.areia .texto, .marfim .texto { color: var(--tinta-suave); }
+
+.cabeca { display: grid; gap: 30px; margin-bottom: clamp(72px, 9vw, 140px); }
+.duas { display: grid; gap: clamp(56px, 8vw, 144px); align-items: center; }
+@media (min-width: 900px) { .duas { grid-template-columns: 1fr 1fr; } }
+.duas > * { min-width: 0; }
+
+/* Conceito */
+.formula { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 22px; margin-top: 56px; }
+.ficha { display: grid; place-items: center; min-height: 112px; padding: 20px 32px; border-radius: 999px; border: 1px solid rgba(241,224,206,.18); font-family: var(--display); font-size: clamp(28px, 3.4vw, 44px); letter-spacing: .04em; }
+.ficha.curva svg { width: clamp(110px, 12vw, 170px); height: auto; color: var(--dourado); }
+.ficha.curva path { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; }
+.ficha.resultado { background: var(--dourado); color: var(--preto); border-color: var(--dourado); font-style: italic; }
+.op { font-size: 36px; font-weight: 200; color: var(--dourado); }
+
+/* Anatomia */
+.anatomia { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 1000px) { .anatomia { grid-template-columns: 1fr 2.1fr 1fr; } }
+.anatomia > * { min-width: 0; }
+.notas { display: grid; gap: 40px; }
+.nota { display: grid; gap: 6px; }
+.nota .linha { width: 56px; height: 1px; background: var(--rotulo); margin-bottom: 10px; }
+.nota h3 { font-size: 34px; font-weight: 500; }
+.nota p { color: var(--tinta-suave); font-size: 15px; }
+@media (min-width: 1000px) { .notas.dir { text-align: right; } .notas.dir .linha { margin-left: auto; } }
+.logo-moldura { position: relative; }
+.logo-moldura::before, .logo-moldura::after { content: ""; position: absolute; left: -4%; right: -4%; height: 1px; background: rgba(124,90,62,.35); }
+.logo-moldura::before { top: 14%; } .logo-moldura::after { bottom: 12%; }
+
+/* Proteção */
+.placa { background: #FFFFFF; border-radius: 28px; padding: clamp(20px, 3vw, 44px); box-shadow: 0 30px 80px rgba(46,35,27,.12); }
+.placa img { margin-inline: auto; }
+
+/* Paleta: sanfona */
+.sanfona { display: flex; flex-direction: column; gap: 10px; }
+@media (min-width: 900px) { .sanfona { flex-direction: row; height: min(68vh, 620px); } }
+.cor {
+  position: relative; flex: 1; min-height: 220px; border-radius: 26px; padding: 28px; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; cursor: default;
+  transition: flex-grow .8s var(--ease);
+  outline-offset: -3px;
+}
+@media (min-width: 900px) { .cor:hover, .cor:focus-within, .cor.ativa { flex-grow: 2.6; } }
+.cor h3 { font-size: clamp(34px, 3vw, 48px); font-weight: 400; }
+.cor .cod { font-size: 13px; letter-spacing: .06em; font-variant-numeric: tabular-nums; display: grid; gap: 2px; }
+.cor .uso { font-size: 14px; }
+.cor .num { position: absolute; top: 24px; left: 28px; font-size: 12px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; }
+.copiar {
+  justify-self: start; align-self: flex-start; margin-top: 10px; padding: 11px 18px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; cursor: pointer;
+  background: transparent; border: 1px solid currentColor; color: inherit; transition: background .3s, color .3s;
+}
+.c-dourado { background: var(--dourado); color: var(--cafe-escuro); }
+.c-areia { background: var(--areia); color: var(--tinta); }
+.c-cafe { background: var(--cafe); color: #FFF8F0; }
+.c-preto { background: #0B0B0B; color: var(--areia); border: 1px solid rgba(241,224,206,.14); }
+.c-dourado .copiar:hover, .c-areia .copiar:hover { background: var(--cafe-escuro); color: var(--areia); border-color: var(--cafe-escuro); }
+.c-cafe .copiar:hover, .c-preto .copiar:hover { background: var(--areia); color: var(--preto); border-color: var(--areia); }
+.copiar[data-ok] { background: var(--cafe-escuro) !important; color: var(--areia) !important; }
+
+/* Tipografia */
+.tipos { display: grid; gap: 32px; }
+@media (min-width: 900px) { .tipos { grid-template-columns: 1fr 1fr; } }
+.tipo { border-top: 1px solid rgba(124,90,62,.4); padding-top: 28px; display: grid; gap: 10px; min-width: 0; }
+.tipo .aa { font-size: clamp(120px, 16vw, 240px); line-height: .9; color: var(--tinta); }
+.tipo.serif .aa { font-family: var(--display); font-weight: 300; }
+.tipo.sans .aa { font-family: var(--texto); font-weight: 200; letter-spacing: -.04em; }
+.tipo .nome { font-size: 20px; font-weight: 500; }
+.amostra-sorria { width: min(100%, 520px); height: auto; margin-block: clamp(28px, 4vw, 56px) clamp(24px, 3vw, 40px); }
+.amostra-sorria path { fill: var(--tinta); }
+.tipo .jogo { color: var(--tinta-suave); overflow-wrap: anywhere; }
+.tipo.serif .jogo { font-family: var(--display); font-size: 22px; }
+.tipo.sans .jogo { font-size: 15px; letter-spacing: .06em; }
+.confirmar { justify-self: start; font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--rotulo); border: 1px dashed var(--rotulo); border-radius: 999px; padding: 7px 13px; }
+.letreiro { margin-top: clamp(64px, 8vw, 112px); overflow: hidden; border-block: 1px solid rgba(124,90,62,.3); padding-block: 22px; }
+.letreiro .faixa { display: flex; width: max-content; animation: corre 38s linear infinite; }
+.letreiro span { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(40px, 5vw, 72px); color: var(--tinta); white-space: nowrap; padding-right: 48px; }
+.letreiro span b { font-style: normal; font-weight: 300; color: var(--dourado); padding-inline: 24px; }
+@keyframes corre { to { transform: translateX(-50%); } }
+
+/* Padrões */
+.ondas { position: absolute; inset: 0; pointer-events: none; opacity: .4; }
+.ondas svg { position: absolute; left: 0; width: 200%; height: 100%; animation: corre 40s linear infinite; }
+.ondas path { fill: none; stroke: var(--areia); stroke-width: 1.4; }
+.dourado .wrap { position: relative; }
+.dourado .texto { color: var(--cafe-escuro); }
+.dourado .titulo em { color: #FFF4E6; }
+.marcadores { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+.marcadores li { display: grid; grid-template-columns: 36px 1fr; gap: 12px; font-weight: 400; }
+.marcadores li::before { content: ""; height: 1px; background: currentColor; margin-top: .85em; }
+
+/* Versões */
+.versoes { display: grid; gap: 22px; perspective: 1200px; }
+@media (min-width: 760px) { .versoes { grid-template-columns: 1fr 1fr; } }
+.versao { display: grid; gap: 14px; }
+.cartao { border-radius: 24px; overflow: hidden; transform-style: preserve-3d; transition: transform .6s var(--ease), box-shadow .6s var(--ease); box-shadow: 0 20px 50px rgba(46,35,27,.12); will-change: transform; }
+.cartao img { width: 100%; aspect-ratio: 489 / 264; object-fit: cover; }
+.versao p { font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--tinta-suave); }
+
+/* Manifesto */
+.manifesto .wrap { position: relative; z-index: 1; }
+.manifesto blockquote { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(56px, 10vw, 156px); line-height: .98; letter-spacing: -.015em; }
+.manifesto blockquote em { color: var(--dourado); }
+.manifesto .w { display: inline-block; }
+.manifesto .rodape-m { margin-top: 48px; display: grid; gap: 14px; max-width: 36em; }
+.manifesto svg.fios { position: absolute; right: -10%; top: 10%; width: 80%; max-width: 1100px; height: auto; color: var(--dourado); opacity: .2; pointer-events: none; }
+.manifesto svg.fios path { fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+/* Aplicações */
+.aplicacoes-grade { display: grid; gap: 22px; }
+@media (min-width: 760px) { .aplicacoes-grade { grid-template-columns: 1fr 1fr; } .aplicacoes-grade .app:nth-child(2) { margin-top: 120px; } }
+.app { display: grid; gap: 14px; }
+.janela { border-radius: 28px; overflow: hidden; aspect-ratio: 396 / 508; max-width: 100%; }
+.janela img { width: 100%; height: 118%; object-fit: cover; }
+.app p { font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--creme-suave); }
+
+/* Encerramento */
+.fim .wrap { display: grid; justify-items: center; text-align: center; gap: 26px; }
+.fim img { width: min(680px, 100%); }
+.fim h2 { font-size: clamp(56px, 8vw, 120px); font-style: italic; font-weight: 300; }
+.fim .creditos { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #FFF8F0; }
+.fim .topo { margin-top: 18px; padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,248,240,.6); font-size: 11.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; color: #FFF8F0; transition: background .3s, color .3s; }
+.fim .topo:hover { background: #FFF8F0; color: var(--cafe-escuro); }
+
+/* ---------- Abertura ---------- */
+.intro {
+  display: none; position: fixed; inset: 0; z-index: 80;
+  background: var(--preto); color: var(--areia);
+  place-items: center; text-align: center;
+  padding: 24px var(--gr) 24px var(--gl);
+  will-change: clip-path;
+}
+.com-intro .intro { display: grid; }
+.com-intro, .com-intro body { overflow: hidden; }
+.intro-conteudo { position: relative; display: grid; justify-items: center; gap: 36px; width: min(1100px, 100%); }
+.intro .rotulo { color: var(--dourado); }
+.intro .rotulo::before { display: none; }
+.intro { overflow: hidden; }
+.intro-frase { display: grid; justify-items: center; gap: .06em; font-family: var(--display); font-weight: 300; font-size: clamp(28px, 7.4vw, 104px); line-height: 1.08; will-change: transform, opacity, filter; }
+.intro-frase .ln { position: relative; display: inline-block; white-space: nowrap; padding-inline: .08em; }
+.intro-frase .ch { display: inline-block; will-change: transform, opacity; backface-visibility: hidden; }
+.intro-frase em { font-style: italic; color: var(--dourado); }
+.intro-frase .w-sorriso { position: relative; display: inline-block; }
+.intro-frase .sublinha { position: absolute; left: -3%; bottom: -.12em; width: 106%; height: .28em; overflow: visible; }
+.intro-frase .sublinha path { fill: none; stroke: var(--dourado); stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 1000; vector-effect: non-scaling-stroke; }
+.intro-frase .cursor { position: absolute; top: 6%; bottom: 6%; left: 0; width: 2px; background: linear-gradient(transparent, var(--dourado) 20%, var(--dourado) 80%, transparent); box-shadow: 0 0 18px rgba(194,144,89,.8); opacity: 0; }
+.intro-logo { position: absolute; left: 50%; top: 50%; width: min(720px, 80vw); height: auto; overflow: visible; pointer-events: none; will-change: transform; }
+.intro-logo path { fill: var(--dourado); }
+.intro-logo .tr { stroke: var(--dourado); stroke-width: .38; stroke-linejoin: round; stroke-dasharray: 1000; fill-opacity: 0; }
+.intro-logo .lg-tag path { opacity: 0; }
+.pular {
+  position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  padding: 11px 18px; border-radius: 999px; border: 1px solid rgba(241,224,206,.35); background: transparent; color: var(--areia);
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: background .3s, color .3s;
+}
+.pular:hover { background: var(--areia); color: var(--preto); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
+  .letreiro .faixa, .ondas svg { animation: none !important; }
+}
+</style>
+
+<script>
+try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('com-intro'); } catch (e) {}
+</script>
+
+<div class="intro" id="intro" aria-label="Abertura">
+  <div class="intro-conteudo">
+    <p class="rotulo intro-rotulo">Sorria Candeal</p>
+    <p class="intro-frase" id="intro-frase">
+      <span class="ln">Cuidar de um <em class="w-sorriso">sorriso<svg class="sublinha" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1000" stroke-dashoffset="1000" d="M4 10 C 50 4, 80 8, 108 22 S 170 40, 196 8"/></svg></em><span class="cursor" aria-hidden="true"></span></span>
+      <span class="ln">é cuidar de uma <em class="w-historia">história</em>.<span class="cursor" aria-hidden="true"></span></span>
+    </p>
+  </div>
+  <svg class="intro-logo" viewBox="82.8 54 295.2 158.4" aria-hidden="true"><g class="lg-sorria"><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M177.222 89.16Q179.273 89.997 181.157 91.043Q183.207 92.215 184.275 93.869Q185.342 95.522 185.426 97.405Q185.509 98.87 184.861 100.356Q184.212 101.842 182.831 103.181Q181.617 104.311 179.65 105.023Q177.724 105.734 175.171 105.734Q173.916 105.734 172.576 105.441Q171.237 105.149 169.981 104.625Q168.726 104.102 167.595 103.37Q166.465 102.637 165.628 101.758L166.172 100.879Q167.93 102.721 170.17 103.788Q172.409 104.856 175.171 104.856Q175.966 104.856 176.678 104.751Q177.39 104.646 178.017 104.437Q179.273 104.018 180.236 103.223Q181.198 102.428 181.659 101.465Q181.91 100.963 182.015 100.419Q182.119 99.875 182.119 99.289Q182.119 97.615 181.449 96.526Q180.738 95.313 179.65 94.559Q178.52 93.68 177.138 93.094Q176.427 92.801 175.694 92.508Q174.962 92.215 174.25 91.88Q173.832 91.713 173.434 91.567Q173.037 91.42 172.66 91.211Q171.446 90.667 170.253 90.018Q169.06 89.369 168.119 88.49Q167.177 87.611 166.57 86.439Q165.963 85.267 165.963 83.677Q165.963 81.626 167.219 79.826Q168.474 78.026 170.735 77.148Q171.823 76.687 173.037 76.499Q174.25 76.31 175.381 76.31Q177.641 76.31 179.775 77.106Q181.91 77.901 183.542 79.617L182.831 80.328Q181.115 78.612 179.315 77.901Q177.515 77.189 175.381 77.189Q174.669 77.189 174.02 77.252Q173.371 77.315 172.786 77.524Q171.739 77.775 170.86 78.403Q170.023 78.989 169.605 79.847Q169.186 80.705 169.102 81.626Q169.019 83.133 169.835 84.326Q170.651 85.519 171.907 86.439Q173.162 87.36 174.606 88.03Q176.05 88.699 177.222 89.16Z"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M202 76.31Q205.516 76.31 208.153 77.566Q210.79 78.822 212.548 80.894Q214.306 82.965 215.185 85.623Q216.064 88.281 216.064 91.022Q216.064 93.764 215.185 96.422Q214.306 99.08 212.548 101.151Q210.79 103.223 208.153 104.479Q205.516 105.734 202 105.734Q198.484 105.734 195.848 104.479Q193.211 103.223 191.453 101.151Q189.695 99.08 188.816 96.422Q187.937 93.764 187.937 91.022Q187.937 88.281 188.816 85.623Q189.695 82.965 191.453 80.894Q193.211 78.822 195.848 77.566Q198.484 76.31 202 76.31ZM201.958 104.856Q204.637 104.856 206.646 103.663Q208.655 102.47 209.995 100.524Q211.334 98.577 212.004 96.087Q212.673 93.597 212.673 91.022Q212.673 88.448 212.004 85.958Q211.334 83.468 209.995 81.521Q208.655 79.575 206.646 78.382Q204.637 77.189 201.958 77.189Q199.28 77.189 197.292 78.382Q195.303 79.575 193.985 81.521Q192.667 83.468 191.997 85.958Q191.327 88.448 191.327 91.022Q191.327 93.597 191.997 96.087Q192.667 98.577 193.985 100.524Q195.303 102.47 197.292 103.663Q199.28 104.856 201.958 104.856Z"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M239.963 105.441L236.238 105.441L233.433 99.791Q232.806 98.494 232.282 97.677Q231.759 96.861 231.194 96.422Q230.629 95.982 229.959 95.836Q229.29 95.689 228.369 95.689L222.719 95.689L222.719 105.441L219.328 105.441L219.328 76.603L227.825 76.603Q230.922 76.603 233.119 77.713Q235.317 78.822 236.614 80.58Q237.912 82.338 238.289 84.472Q238.665 86.607 238.121 88.658Q237.577 90.709 236.112 92.404Q234.647 94.099 232.261 94.978Q233.517 95.145 234.459 95.689Q235.401 96.233 236.028 97.489L237.033 99.54L239.963 105.441ZM227.825 94.852Q230.336 94.852 232.01 93.555Q233.685 92.257 234.522 90.332Q235.359 88.407 235.359 86.146Q235.359 83.886 234.522 81.961Q233.685 80.036 232.01 78.738Q230.336 77.44 227.825 77.44L222.719 77.44L222.719 94.852L227.825 94.852Z"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M262.439 105.441L258.714 105.441L255.91 99.791Q255.282 98.494 254.759 97.677Q254.235 96.861 253.67 96.422Q253.105 95.982 252.436 95.836Q251.766 95.689 250.845 95.689L245.195 95.689L245.195 105.441L241.804 105.441L241.804 76.603L250.301 76.603Q253.398 76.603 255.596 77.713Q257.793 78.822 259.091 80.58Q260.388 82.338 260.765 84.472Q261.141 86.607 260.597 88.658Q260.053 90.709 258.588 92.404Q257.123 94.099 254.738 94.978Q255.993 95.145 256.935 95.689Q257.877 96.233 258.505 97.489L259.509 99.54L262.439 105.441ZM250.301 94.852Q252.812 94.852 254.486 93.555Q256.161 92.257 256.998 90.332Q257.835 88.407 257.835 86.146Q257.835 83.886 256.998 81.961Q256.161 80.036 254.486 78.738Q252.812 77.44 250.301 77.44L245.195 77.44L245.195 94.852L250.301 94.852Z"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M264.281 105.441L264.281 76.603L267.671 76.603L267.671 105.441L264.281 105.441Z"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M287.887 95.522L275.791 95.522L271.982 105.441L271.019 105.441L282.278 76.603L284.538 76.603L295.17 105.441L291.57 105.441L287.887 95.522ZM287.636 94.685L282.027 79.575L276.125 94.685L287.636 94.685Z"/></g><g class="lg-candeal"><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M130.6976 111.326C132.7708 111.326 134.6851 111.566 136.4391 112.044C138.1938 112.522 139.7886 113.19 141.224 114.047C142.6598 114.905 143.9254 115.921 145.0222 117.098C146.1183 118.274 147.0657 119.56 147.8628 120.956L143.3775 120.956C142.1413 118.483 140.4666 116.47 138.3531 114.915C136.2402 113.359 133.668 112.582 130.6378 112.582C128.086 112.582 125.8631 113.15 123.9693 114.286C122.0754 115.423 120.5002 116.918 119.2439 118.773C117.9879 120.627 117.0414 122.74 116.403 125.112C115.7652 127.484 115.4466 129.897 115.4466 132.349C115.4466 134.801 115.7652 137.214 116.403 139.586C117.0414 141.959 117.9879 144.071 119.2439 145.926C120.5002 147.78 122.0754 149.275 123.9693 150.412C125.8631 151.548 128.086 152.116 130.6378 152.116C133.668 152.116 136.2402 151.339 138.3531 149.784C140.4666 148.228 142.1413 146.215 143.3775 143.743L147.8628 143.743C147.0657 145.138 146.1183 146.425 145.0222 147.601C143.9254 148.777 142.6598 149.793 141.224 150.651C139.7886 151.508 138.1938 152.176 136.4391 152.654C134.6851 153.133 132.7708 153.372 130.6976 153.372C127.3482 153.372 124.418 152.774 121.9056 151.578C119.3936 150.382 117.3002 148.797 115.6252 146.823C113.9511 144.849 112.695 142.596 111.8577 140.065C111.0203 137.533 110.6016 134.961 110.6016 132.349C110.6016 129.737 111.0203 127.166 111.8577 124.633C112.695 122.102 113.9511 119.849 115.6252 117.875C117.3002 115.901 119.3936 114.316 121.9056 113.12C124.418 111.925 127.3482 111.326 130.6976 111.326Z"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M155.2901 138.779L155.2791 138.779L149.8365 152.953L148.4609 152.953L164.5495 111.745L167.7793 111.745L182.9713 152.953L177.8272 152.953L173.0472 140.079L172.1659 137.582L172.2056 137.582L164.1906 115.991L156.0149 136.923L155.7575 137.582ZZ"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M214.7295 111.745L214.7295 152.953L212.0984 152.953L189.0116 113.958L189.0116 152.953L187.7556 152.953L187.7556 111.745L193.1383 111.745L213.4735 145.836L213.4735 111.745ZZ"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" fill-rule="evenodd" d="M231.2972 111.745C235.1245 111.745 238.4742 112.333 241.3451 113.509C244.2163 114.686 246.6082 116.24 248.5222 118.174C250.4361 120.108 251.8716 122.311 252.8286 124.783C253.7858 127.255 254.2643 129.777 254.2643 132.349C254.2643 134.921 253.7858 137.443 252.8286 139.915C251.8716 142.387 250.4361 144.59 248.5222 146.524C246.6082 148.458 244.2163 150.013 241.3451 151.189C238.4742 152.365 235.1245 152.953 231.2972 152.953L219.5147 152.953L219.5147 111.745ZZM231.2972 151.698C234.2877 151.698 236.9092 151.139 239.1619 150.023C241.4149 148.907 243.2891 147.441 244.7838 145.627C246.2791 143.813 247.4059 141.749 248.1633 139.437C248.9207 137.124 249.2997 134.752 249.2997 132.32C249.2997 129.887 248.9207 127.514 248.1633 125.202C247.4059 122.889 246.2791 120.826 244.7838 119.012C243.2891 117.197 241.4149 115.732 239.1619 114.615C236.9092 113.499 234.2877 112.941 231.2972 112.941L224.3594 112.941L224.3594 151.698ZZ"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M263.8338 151.698L283.8101 151.698L283.8101 152.953L258.9888 152.953L258.9888 111.745L283.8101 111.745L283.8101 112.941L263.8338 112.941L263.8338 131.662L277.4699 131.662L277.4699 132.917L263.8338 132.917ZZ"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" fill-rule="evenodd" d="M311.5616 138.779L294.2762 138.779L288.8337 152.953L287.458 152.953L303.5466 111.745L306.7764 111.745L321.9684 152.953L316.8244 152.953ZZM311.2027 137.582L303.1877 115.991L294.7547 137.582ZZ"/><path class="tr" pathLength="1000" stroke-dashoffset="1000" d="M350.1984 151.698L350.1984 152.953L326.7527 152.953L326.7527 111.745L331.5977 111.745L331.5977 151.698Z"/></g><path class="tr lg-curva" pathLength="1000" stroke-dashoffset="1000" fill-rule="evenodd" d="M155.0716 137.517C160.7176 139.681 167.4541 139.427 174.8653 137.658C177.4196 137.051 178.6983 136.888 181.4185 137.002C192.8514 137.484 200.3664 145.559 208.764 152.34C252.5088 191.423 291.8792 172.273 312.0888 148.933C312.4295 148.541 312.781 148.158 313.1271 147.774C312.8579 147.071 312.5789 146.356 312.3386 145.744C305.4906 154.384 294.9474 164.11 282.7536 168.603C269.3256 173.551 252.4056 173.942 239.1474 168.301C228.2522 163.666 218.6357 157.576 210.3406 149.985C201.7409 143.524 194.3291 134.896 182.0806 135.038C179.8379 135.064 178.1056 135.352 175.9382 135.734C168.8304 136.985 161.8577 137.954 155.0716 137.517"/><g class="lg-tag"><path d="M128.698 192.839Q127.772 192.839 126.987 192.528Q126.202 192.218 125.628 191.655Q125.054 191.093 124.731 190.331Q124.409 189.57 124.409 188.667Q124.409 187.765 124.731 187.003Q125.054 186.242 125.634 185.679Q126.214 185.117 126.999 184.806Q127.784 184.496 128.71 184.496Q129.6 184.496 130.385 184.795Q131.17 185.093 131.709 185.691L131.159 186.242Q130.655 185.726 130.045 185.498Q129.436 185.269 128.733 185.269Q127.995 185.269 127.362 185.521Q126.729 185.773 126.26 186.236Q125.792 186.699 125.528 187.314Q125.264 187.929 125.264 188.667Q125.264 189.406 125.528 190.021Q125.792 190.636 126.26 191.099Q126.729 191.562 127.362 191.814Q127.995 192.066 128.733 192.066Q129.436 192.066 130.045 191.831Q130.655 191.597 131.159 191.081L131.709 191.632Q131.17 192.23 130.385 192.534Q129.6 192.839 128.698 192.839Z"/><path d="M136.576 192.769L136.576 184.566L137.443 184.566L137.443 192.019L142.036 192.019L142.036 192.769L136.576 192.769Z"/><path d="M146.609 192.769L146.609 184.566L147.477 184.566L147.477 192.769L146.609 192.769ZM146.281 183.898L147.887 182.445L149 182.445L147.102 183.898L146.281 183.898Z"/><path d="M153.28 192.769L153.28 184.566L153.995 184.566L159.655 191.691L159.28 191.691L159.28 184.566L160.135 184.566L160.135 192.769L159.42 192.769L153.772 185.644L154.147 185.644L154.147 192.769L153.28 192.769Z"/><path d="M165.939 192.769L165.939 184.566L166.806 184.566L166.806 192.769L165.939 192.769Z"/><path d="M176.171 192.839Q175.246 192.839 174.461 192.528Q173.675 192.218 173.101 191.655Q172.527 191.093 172.205 190.331Q171.883 189.57 171.883 188.667Q171.883 187.765 172.205 187.003Q172.527 186.242 173.107 185.679Q173.687 185.117 174.472 184.806Q175.257 184.496 176.183 184.496Q177.074 184.496 177.859 184.795Q178.644 185.093 179.183 185.691L178.632 186.242Q178.128 185.726 177.519 185.498Q176.91 185.269 176.207 185.269Q175.468 185.269 174.836 185.521Q174.203 185.773 173.734 186.236Q173.265 186.699 173.002 187.314Q172.738 187.929 172.738 188.667Q172.738 189.406 173.002 190.021Q173.265 190.636 173.734 191.099Q174.203 191.562 174.836 191.814Q175.468 192.066 176.207 192.066Q176.91 192.066 177.519 191.831Q178.128 191.597 178.632 191.081L179.183 191.632Q178.644 192.23 177.859 192.534Q177.074 192.839 176.171 192.839Z"/><path d="M182.526 192.769L186.276 184.566L187.131 184.566L190.881 192.769L189.967 192.769L186.522 185.07L186.873 185.07L183.428 192.769L182.526 192.769ZM184.002 190.577L184.26 189.874L189.029 189.874L189.287 190.577L184.002 190.577Z"/><path d="M213.307 192.839Q212.382 192.839 211.591 192.528Q210.8 192.218 210.22 191.65Q209.64 191.081 209.317 190.325Q208.995 189.57 208.995 188.667Q208.995 187.765 209.317 187.009Q209.64 186.253 210.22 185.685Q210.8 185.117 211.585 184.806Q212.37 184.496 213.307 184.496Q214.233 184.496 215.018 184.806Q215.803 185.117 216.383 185.679Q216.963 186.242 217.286 187.003Q217.608 187.765 217.608 188.667Q217.608 189.57 217.286 190.331Q216.963 191.093 216.383 191.655Q215.803 192.218 215.018 192.528Q214.233 192.839 213.307 192.839ZM213.307 192.066Q214.046 192.066 214.673 191.814Q215.3 191.562 215.762 191.099Q216.225 190.636 216.483 190.021Q216.741 189.406 216.741 188.667Q216.741 187.929 216.483 187.314Q216.225 186.699 215.762 186.236Q215.3 185.773 214.673 185.521Q214.046 185.269 213.307 185.269Q212.569 185.269 211.936 185.521Q211.304 185.773 210.841 186.236Q210.378 186.699 210.114 187.314Q209.851 187.929 209.851 188.667Q209.851 189.394 210.114 190.015Q210.378 190.636 210.841 191.099Q211.304 191.562 211.936 191.814Q212.569 192.066 213.307 192.066Z"/><path d="M222.685 192.769L222.685 184.566L226.025 184.566Q227.337 184.566 228.327 185.087Q229.318 185.609 229.868 186.535Q230.419 187.46 230.419 188.667Q230.419 189.874 229.868 190.8Q229.318 191.726 228.327 192.247Q227.337 192.769 226.025 192.769L222.685 192.769ZM223.552 192.019L225.978 192.019Q227.068 192.019 227.87 191.591Q228.673 191.163 229.118 190.407Q229.564 189.652 229.564 188.667Q229.564 187.671 229.118 186.921Q228.673 186.171 227.87 185.744Q227.068 185.316 225.978 185.316L223.552 185.316L223.552 192.019Z"/><path d="M239.082 192.839Q238.156 192.839 237.365 192.528Q236.574 192.218 235.994 191.65Q235.414 191.081 235.092 190.325Q234.77 189.57 234.77 188.667Q234.77 187.765 235.092 187.009Q235.414 186.253 235.994 185.685Q236.574 185.117 237.359 184.806Q238.144 184.496 239.082 184.496Q240.007 184.496 240.793 184.806Q241.578 185.117 242.158 185.679Q242.738 186.242 243.06 187.003Q243.382 187.765 243.382 188.667Q243.382 189.57 243.06 190.331Q242.738 191.093 242.158 191.655Q241.578 192.218 240.793 192.528Q240.007 192.839 239.082 192.839ZM239.082 192.066Q239.82 192.066 240.447 191.814Q241.074 191.562 241.537 191.099Q242 190.636 242.257 190.021Q242.515 189.406 242.515 188.667Q242.515 187.929 242.257 187.314Q242 186.699 241.537 186.236Q241.074 185.773 240.447 185.521Q239.82 185.269 239.082 185.269Q238.344 185.269 237.711 185.521Q237.078 185.773 236.615 186.236Q236.152 186.699 235.889 187.314Q235.625 187.929 235.625 188.667Q235.625 189.394 235.889 190.015Q236.152 190.636 236.615 191.099Q237.078 191.562 237.711 191.814Q238.344 192.066 239.082 192.066Z"/><path d="M248.459 192.769L248.459 184.566L249.174 184.566L254.834 191.691L254.459 191.691L254.459 184.566L255.314 184.566L255.314 192.769L254.6 192.769L248.952 185.644L249.327 185.644L249.327 192.769L248.459 192.769Z"/><path d="M262.712 192.769L262.712 185.316L259.829 185.316L259.829 184.566L266.462 184.566L266.462 185.316L263.579 185.316L263.579 192.769L262.712 192.769Z"/><path d="M274.445 192.839Q273.519 192.839 272.728 192.528Q271.937 192.218 271.357 191.65Q270.777 191.081 270.455 190.325Q270.132 189.57 270.132 188.667Q270.132 187.765 270.455 187.009Q270.777 186.253 271.357 185.685Q271.937 185.117 272.722 184.806Q273.507 184.496 274.445 184.496Q275.37 184.496 276.155 184.806Q276.94 185.117 277.521 185.679Q278.101 186.242 278.423 187.003Q278.745 187.765 278.745 188.667Q278.745 189.57 278.423 190.331Q278.101 191.093 277.521 191.655Q276.94 192.218 276.155 192.528Q275.37 192.839 274.445 192.839ZM274.445 192.066Q275.183 192.066 275.81 191.814Q276.437 191.562 276.899 191.099Q277.362 190.636 277.62 190.021Q277.878 189.406 277.878 188.667Q277.878 187.929 277.62 187.314Q277.362 186.699 276.899 186.236Q276.437 185.773 275.81 185.521Q275.183 185.269 274.445 185.269Q273.706 185.269 273.074 185.521Q272.441 185.773 271.978 186.236Q271.515 186.699 271.251 187.314Q270.988 187.929 270.988 188.667Q270.988 189.394 271.251 190.015Q271.515 190.636 271.978 191.099Q272.441 191.562 273.074 191.814Q273.706 192.066 274.445 192.066Z"/><path d="M283.822 192.769L283.822 184.566L284.689 184.566L284.689 192.019L289.283 192.019L289.283 192.769L283.822 192.769Z"/><path d="M297.277 192.839Q296.351 192.839 295.56 192.528Q294.769 192.218 294.189 191.65Q293.609 191.081 293.287 190.325Q292.965 189.57 292.965 188.667Q292.965 187.765 293.287 187.009Q293.609 186.253 294.189 185.685Q294.769 185.117 295.555 184.806Q296.34 184.496 297.277 184.496Q298.203 184.496 298.988 184.806Q299.773 185.117 300.353 185.679Q300.933 186.242 301.255 187.003Q301.578 187.765 301.578 188.667Q301.578 189.57 301.255 190.331Q300.933 191.093 300.353 191.655Q299.773 192.218 298.988 192.528Q298.203 192.839 297.277 192.839ZM297.277 192.066Q298.015 192.066 298.642 191.814Q299.269 191.562 299.732 191.099Q300.195 190.636 300.453 190.021Q300.71 189.406 300.71 188.667Q300.71 187.929 300.453 187.314Q300.195 186.699 299.732 186.236Q299.269 185.773 298.642 185.521Q298.015 185.269 297.277 185.269Q296.539 185.269 295.906 185.521Q295.273 185.773 294.81 186.236Q294.348 186.699 294.084 187.314Q293.82 187.929 293.82 188.667Q293.82 189.394 294.084 190.015Q294.348 190.636 294.81 191.099Q295.273 191.562 295.906 191.814Q296.539 192.066 297.277 192.066ZM296.515 183.898L298.121 182.445L299.234 182.445L297.336 183.898L296.515 183.898Z"/><path d="M310.252 192.839Q309.315 192.839 308.524 192.528Q307.733 192.218 307.153 191.655Q306.573 191.093 306.25 190.331Q305.928 189.57 305.928 188.667Q305.928 187.765 306.25 187.003Q306.573 186.242 307.159 185.679Q307.745 185.117 308.535 184.806Q309.326 184.496 310.264 184.496Q311.201 184.496 311.981 184.789Q312.76 185.082 313.311 185.679L312.772 186.23Q312.256 185.714 311.635 185.492Q311.014 185.269 310.299 185.269Q309.537 185.269 308.899 185.521Q308.26 185.773 307.786 186.236Q307.311 186.699 307.047 187.314Q306.784 187.929 306.784 188.667Q306.784 189.394 307.047 190.015Q307.311 190.636 307.786 191.099Q308.26 191.562 308.899 191.814Q309.537 192.066 310.287 192.066Q310.99 192.066 311.617 191.855Q312.244 191.644 312.772 191.14L313.264 191.796Q312.678 192.312 311.893 192.575Q311.108 192.839 310.252 192.839ZM313.264 191.796L312.432 191.691L312.432 188.667L313.264 188.667L313.264 191.796Z"/><path d="M318.845 192.769L318.845 184.566L319.712 184.566L319.712 192.769L318.845 192.769Z"/><path d="M329.077 192.839Q328.152 192.839 327.366 192.528Q326.581 192.218 326.007 191.655Q325.433 191.093 325.111 190.331Q324.789 189.57 324.789 188.667Q324.789 187.765 325.111 187.003Q325.433 186.242 326.013 185.679Q326.593 185.117 327.378 184.806Q328.163 184.496 329.089 184.496Q329.98 184.496 330.765 184.795Q331.55 185.093 332.089 185.691L331.538 186.242Q331.034 185.726 330.425 185.498Q329.816 185.269 329.112 185.269Q328.374 185.269 327.741 185.521Q327.109 185.773 326.64 186.236Q326.171 186.699 325.908 187.314Q325.644 187.929 325.644 188.667Q325.644 189.406 325.908 190.021Q326.171 190.636 326.64 191.099Q327.109 191.562 327.741 191.814Q328.374 192.066 329.112 192.066Q329.816 192.066 330.425 191.831Q331.034 191.597 331.538 191.081L332.089 191.632Q331.55 192.23 330.765 192.534Q329.98 192.839 329.077 192.839Z"/><path d="M335.432 192.769L339.182 184.566L340.037 184.566L343.787 192.769L342.873 192.769L339.428 185.07L339.779 185.07L336.334 192.769L335.432 192.769ZM336.908 190.577L337.166 189.874L341.935 189.874L342.193 190.577L336.908 190.577Z"/><path fill-rule="evenodd" d="M199.7872 186.788C200.6685 186.788 201.3826 187.502 201.3826 188.384C201.3826 189.265 200.6685 189.979 199.7872 189.979C198.9057 189.979 198.1916 189.265 198.1916 188.384C198.1916 187.502 198.9057 186.788 199.7872 186.788"/></g></svg>
+  <button class="pular" type="button" id="pular">Pular abertura</button>
+</div>
+
+<header class="menu" aria-label="Menu">
+  <a class="marca" href="#inicio">Sorria Candeal</a>
+  <nav aria-label="Seções">
+    <a href="#conceito">Conceito</a>
+    <a href="#logotipo">Logotipo</a>
+    <a href="#cores">Cores</a>
+    <a href="#tipografia">Tipografia</a>
+    <a href="#padroes">Padrões</a>
+    <a href="#aplicacoes">Aplicações</a>
+  </nav>
+  <a class="cta" href="#aplicacoes">Ver a marca</a>
+  <span class="progresso" aria-hidden="true"></span>
+</header>
+
+<main>
+  <!-- CAPA -->
+  <section class="cena" id="inicio">
+    <div class="palco">
+      <div class="brilho" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="capa-texto">
+          <p class="rotulo">Identidade visual</p>
+          <h1>A curva é<br>o <em>sorriso</em>.</h1>
+          <p>Sorria Candeal é uma clínica odontológica com assinatura premium: dourado, areia e uma única linha que transforma o nome em gesto.</p>
+          <span class="dica"><i aria-hidden="true"></i>Role para descobrir</span>
+        </div>
+        <div class="simbolo">
+          <img src="img/logo.png" width="1230" height="660" alt="Logotipo Sorria Candeal Clínica Odontológica em dourado">
+          <svg class="guias" viewBox="0 0 1230 660" preserveAspectRatio="none" aria-hidden="true"><g class="guias-in"><line class="g" pathLength="1000" stroke-dashoffset="1000" x1="-2600" y1="93" x2="3830" y2="93"/><line class="g" pathLength="1000" stroke-dashoffset="1000" x1="-2600" y1="215.6" x2="3830" y2="215.6"/><line class="g" pathLength="1000" stroke-dashoffset="1000" x1="-2600" y1="238.9" x2="3830" y2="238.9"/><line class="g" pathLength="1000" stroke-dashoffset="1000" x1="-2600" y1="414.1" x2="3830" y2="414.1"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="-2600" y1="572.6" x2="3830" y2="572.6"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="-2600" y1="556.8" x2="3830" y2="556.8"/><line class="g" pathLength="1000" stroke-dashoffset="1000" x1="115.8" y1="-2600" x2="115.8" y2="3260"/><line class="g" pathLength="1000" stroke-dashoffset="1000" x1="1114.2" y1="-2600" x2="1114.2" y2="3260"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="615" y1="-2600" x2="615" y2="3260"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="775" y1="-754.8" x2="-154" y2="1407.7"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="-61.8" y1="-762.5" x2="826.5" y2="1415.4"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="1354.1" y1="-754.8" x2="425.1" y2="1407.7"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="517.4" y1="-762.5" x2="1405.7" y2="1415.4"/><line class="g fina" pathLength="1000" stroke-dashoffset="1000" x1="-156" y1="-665.8" x2="1143" y2="1318.7"/><circle class="g fina" pathLength="1000" stroke-dashoffset="1000" cx="640.5" cy="213.8" r="365.0"/><circle class="gp" cx="301.1" cy="348" r="5"/><circle class="gp" cx="707.1" cy="572.6" r="5"/><circle class="gp" cx="959.7" cy="390.7" r="5"/><circle class="gp" cx="347.4" cy="240.6" r="5"/><circle class="gp" cx="926.5" cy="240.6" r="5"/><circle class="gp" cx="115.8" cy="414.1" r="5"/><circle class="gp" cx="1114.2" cy="414.1" r="5"/></g></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO -->
+  <section class="painel escuro" id="conceito">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="rotulo" data-surge>Conceito</p>
+        <h2 class="titulo" data-divide>Uma marca que nasce do gesto mais <em>simples</em>.</h2>
+        <p class="texto" data-surge>A curva que atravessa CANDEAL é um sorriso. Ela nasce entre as letras, liga o nome ao cuidado da clínica e se repete em todo o sistema visual.</p>
+      </div>
+      <div class="formula" aria-label="Sorria Candeal mais a curva é igual a sorriso">
+        <span class="ficha" data-surge>Sorria Candeal</span>
+        <span class="op" data-surge>+</span>
+        <span class="ficha curva" data-surge><svg viewBox="0 0 170 60" aria-hidden="true"><path d="M6 14 C 40 6, 62 10, 88 30 S 140 58, 164 18"/></svg></span>
+        <span class="op" data-surge>=</span>
+        <span class="ficha resultado" data-surge>sorriso</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANATOMIA -->
+  <section class="painel areia" id="logotipo">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="rotulo" data-surge>Logotipo</p>
+        <h2 class="titulo" data-divide>Anatomia da <em>marca</em></h2>
+      </div>
+      <div class="anatomia">
+        <div class="notas">
+          <div class="nota" data-surge><span class="linha"></span><h3>Sorria</h3><p>O convite, em serifa leve e aberta.</p></div>
+          <div class="nota" data-surge><span class="linha"></span><h3>Candeal</h3><p>O nome em destaque, hastes finas e alto contraste.</p></div>
+        </div>
+        <div class="logo-moldura" data-surge>
+          <img src="img/logo.png" width="1230" height="660" alt="Logotipo principal Sorria Candeal">
+        </div>
+        <div class="notas dir">
+          <div class="nota" data-surge><span class="linha"></span><h3>A curva</h3><p>Um sorriso desenhado que une as letras.</p></div>
+          <div class="nota" data-surge><span class="linha"></span><h3>Assinatura</h3><p>Clínica • Odontológica, em caixa alta espaçada.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTEÇÃO -->
+  <section class="painel marfim" id="protecao">
+    <div class="wrap duas">
+      <div class="cabeca" style="margin-bottom:0">
+        <p class="rotulo" data-surge>Área de proteção</p>
+        <h2 class="titulo" data-divide>Espaço para <em>respirar</em></h2>
+        <p class="texto" data-surge>A letra O do logotipo define a margem mínima ao redor da marca. Nenhum texto, imagem ou borda deve invadir esse espaço, em qualquer aplicação.</p>
+      </div>
+      <div class="placa" data-surge>
+        <img src="img/protecao.png" width="623" height="420" alt="Logotipo com a área de proteção marcada pela letra O nos quatro cantos">
+      </div>
+    </div>
+  </section>
+
+  <!-- PALETA -->
+  <section class="painel preto" id="cores">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="rotulo" data-surge>Paleta de cores</p>
+        <h2 class="titulo" data-divide>Tons de <em>calor</em> e cuidado</h2>
+      </div>
+      <div class="sanfona" data-surge>
+        <article class="cor c-dourado ativa">
+          <span class="num">Principal</span>
+          <h3>Dourado</h3>
+          <p class="cod"><span>HEX #C29059</span><span>RGB 194, 144, 89</span></p>
+          <p class="uso">A cor da marca: logotipo, destaques e detalhes.</p>
+          <button class="copiar" type="button" id="copiar-dourado" data-hex="#C29059">Copiar HEX</button>
+        </article>
+        <article class="cor c-areia">
+          <span class="num">Base</span>
+          <h3>Areia</h3>
+          <p class="cod"><span>HEX #F1E0CE</span><span>RGB 241, 224, 206</span></p>
+          <p class="uso">Fundos e respiro.</p>
+          <button class="copiar" type="button" id="copiar-areia" data-hex="#F1E0CE">Copiar HEX</button>
+        </article>
+        <article class="cor c-cafe">
+          <span class="num">Apoio</span>
+          <h3>Café</h3>
+          <p class="cod"><span>HEX #927056</span><span>RGB 146, 112, 86</span></p>
+          <p class="uso">Contraste e aconchego.</p>
+          <button class="copiar" type="button" id="copiar-cafe" data-hex="#927056">Copiar HEX</button>
+        </article>
+        <article class="cor c-preto">
+          <span class="num">Premium</span>
+          <h3>Preto</h3>
+          <p class="cod"><span>HEX #131313</span><span>RGB 19, 19, 19</span></p>
+          <p class="uso">Versão noturna e de alto padrão.</p>
+          <button class="copiar" type="button" id="copiar-preto" data-hex="#131313">Copiar HEX</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOGRAFIA -->
+  <section class="painel areia" id="tipografia">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="rotulo" data-surge>Tipografia</p>
+        <h2 class="titulo" data-divide>Elegância e <em>clareza</em></h2>
+      </div>
+      <div class="tipos">
+        <div class="tipo serif" data-surge>
+          <p class="rotulo">Logotipo e destaques</p>
+          <svg class="amostra-sorria" viewBox="164.63 75.31 131.54 31.42" role="img" aria-label="SORRIA, na fonte Loving Ambros"><path d="M177.222 89.16Q179.273 89.997 181.157 91.043Q183.207 92.215 184.275 93.869Q185.342 95.522 185.426 97.405Q185.509 98.87 184.861 100.356Q184.212 101.842 182.831 103.181Q181.617 104.311 179.65 105.023Q177.724 105.734 175.171 105.734Q173.916 105.734 172.576 105.441Q171.237 105.149 169.981 104.625Q168.726 104.102 167.595 103.37Q166.465 102.637 165.628 101.758L166.172 100.879Q167.93 102.721 170.17 103.788Q172.409 104.856 175.171 104.856Q175.966 104.856 176.678 104.751Q177.39 104.646 178.017 104.437Q179.273 104.018 180.236 103.223Q181.198 102.428 181.659 101.465Q181.91 100.963 182.015 100.419Q182.119 99.875 182.119 99.289Q182.119 97.615 181.449 96.526Q180.738 95.313 179.65 94.559Q178.52 93.68 177.138 93.094Q176.427 92.801 175.694 92.508Q174.962 92.215 174.25 91.88Q173.832 91.713 173.434 91.567Q173.037 91.42 172.66 91.211Q171.446 90.667 170.253 90.018Q169.06 89.369 168.119 88.49Q167.177 87.611 166.57 86.439Q165.963 85.267 165.963 83.677Q165.963 81.626 167.219 79.826Q168.474 78.026 170.735 77.148Q171.823 76.687 173.037 76.499Q174.25 76.31 175.381 76.31Q177.641 76.31 179.775 77.106Q181.91 77.901 183.542 79.617L182.831 80.328Q181.115 78.612 179.315 77.901Q177.515 77.189 175.381 77.189Q174.669 77.189 174.02 77.252Q173.371 77.315 172.786 77.524Q171.739 77.775 170.86 78.403Q170.023 78.989 169.605 79.847Q169.186 80.705 169.102 81.626Q169.019 83.133 169.835 84.326Q170.651 85.519 171.907 86.439Q173.162 87.36 174.606 88.03Q176.05 88.699 177.222 89.16Z"/><path d="M202 76.31Q205.516 76.31 208.153 77.566Q210.79 78.822 212.548 80.894Q214.306 82.965 215.185 85.623Q216.064 88.281 216.064 91.022Q216.064 93.764 215.185 96.422Q214.306 99.08 212.548 101.151Q210.79 103.223 208.153 104.479Q205.516 105.734 202 105.734Q198.484 105.734 195.848 104.479Q193.211 103.223 191.453 101.151Q189.695 99.08 188.816 96.422Q187.937 93.764 187.937 91.022Q187.937 88.281 188.816 85.623Q189.695 82.965 191.453 80.894Q193.211 78.822 195.848 77.566Q198.484 76.31 202 76.31ZM201.958 104.856Q204.637 104.856 206.646 103.663Q208.655 102.47 209.995 100.524Q211.334 98.577 212.004 96.087Q212.673 93.597 212.673 91.022Q212.673 88.448 212.004 85.958Q211.334 83.468 209.995 81.521Q208.655 79.575 206.646 78.382Q204.637 77.189 201.958 77.189Q199.28 77.189 197.292 78.382Q195.303 79.575 193.985 81.521Q192.667 83.468 191.997 85.958Q191.327 88.448 191.327 91.022Q191.327 93.597 191.997 96.087Q192.667 98.577 193.985 100.524Q195.303 102.47 197.292 103.663Q199.28 104.856 201.958 104.856Z"/><path d="M239.963 105.441L236.238 105.441L233.433 99.791Q232.806 98.494 232.282 97.677Q231.759 96.861 231.194 96.422Q230.629 95.982 229.959 95.836Q229.29 95.689 228.369 95.689L222.719 95.689L222.719 105.441L219.328 105.441L219.328 76.603L227.825 76.603Q230.922 76.603 233.119 77.713Q235.317 78.822 236.614 80.58Q237.912 82.338 238.289 84.472Q238.665 86.607 238.121 88.658Q237.577 90.709 236.112 92.404Q234.647 94.099 232.261 94.978Q233.517 95.145 234.459 95.689Q235.401 96.233 236.028 97.489L237.033 99.54L239.963 105.441ZM227.825 94.852Q230.336 94.852 232.01 93.555Q233.685 92.257 234.522 90.332Q235.359 88.407 235.359 86.146Q235.359 83.886 234.522 81.961Q233.685 80.036 232.01 78.738Q230.336 77.44 227.825 77.44L222.719 77.44L222.719 94.852L227.825 94.852Z"/><path d="M262.439 105.441L258.714 105.441L255.91 99.791Q255.282 98.494 254.759 97.677Q254.235 96.861 253.67 96.422Q253.105 95.982 252.436 95.836Q251.766 95.689 250.845 95.689L245.195 95.689L245.195 105.441L241.804 105.441L241.804 76.603L250.301 76.603Q253.398 76.603 255.596 77.713Q257.793 78.822 259.091 80.58Q260.388 82.338 260.765 84.472Q261.141 86.607 260.597 88.658Q260.053 90.709 258.588 92.404Q257.123 94.099 254.738 94.978Q255.993 95.145 256.935 95.689Q257.877 96.233 258.505 97.489L259.509 99.54L262.439 105.441ZM250.301 94.852Q252.812 94.852 254.486 93.555Q256.161 92.257 256.998 90.332Q257.835 88.407 257.835 86.146Q257.835 83.886 256.998 81.961Q256.161 80.036 254.486 78.738Q252.812 77.44 250.301 77.44L245.195 77.44L245.195 94.852L250.301 94.852Z"/><path d="M264.281 105.441L264.281 76.603L267.671 76.603L267.671 105.441L264.281 105.441Z"/><path d="M287.887 95.522L275.791 95.522L271.982 105.441L271.019 105.441L282.278 76.603L284.538 76.603L295.17 105.441L291.57 105.441L287.887 95.522ZM287.636 94.685L282.027 79.575L276.125 94.685L287.636 94.685Z"/></svg>
+          <p class="nome">Loving Ambros</p>
+          <p class="jogo">Serifa de alto contraste, hastes finas e curvas abertas. Usada no nome da marca e em títulos de destaque.</p>
+        </div>
+        <div class="tipo sans" data-surge>
+          <p class="rotulo">Textos e assinatura</p>
+          <p class="aa">Aa</p>
+          <p class="nome">Montserrat</p>
+          <p class="jogo">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz · 0123456789</p>
+        </div>
+      </div>
+    </div>
+    <div class="letreiro" aria-hidden="true">
+      <div class="faixa">
+        <span>Sorria Candeal<b>•</b>Clínica Odontológica<b>•</b>Sorrisos reais<b>•</b>Histórias únicas<b>•</b></span>
+        <span>Sorria Candeal<b>•</b>Clínica Odontológica<b>•</b>Sorrisos reais<b>•</b>Histórias únicas<b>•</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PADRÕES -->
+  <section class="painel dourado" id="padroes">
+    <div class="ondas" aria-hidden="true">
+      <svg viewBox="0 0 2400 800" preserveAspectRatio="none">
+        <path d="M0 120 q150 -60 300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0"/>
+        <path d="M0 280 q150 -60 300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0"/>
+        <path d="M0 440 q150 -60 300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0"/>
+        <path d="M0 600 q150 -60 300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0"/>
+        <path d="M0 760 q150 -60 300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0 t300 0"/>
+      </svg>
+    </div>
+    <div class="wrap duas">
+      <div>
+        <div class="cabeca" style="margin-bottom:0">
+          <p class="rotulo" data-surge>Padrões gráficos</p>
+          <h2 class="titulo" data-divide>A curva vira <em>textura</em></h2>
+          <p class="texto" data-surge>Linhas fluidas, tiradas do sorriso do logotipo, criam fundos para papelaria, sinalização e redes sociais.</p>
+        </div>
+        <ul class="marcadores" data-surge>
+          <li>Curvas amplas para capas e fundos</li>
+          <li>Ondas contínuas para faixas e embalagens</li>
+          <li>Sempre nas cores da paleta</li>
+        </ul>
+      </div>
+      <div class="placa" data-surge>
+        <img src="img/padroes.png" width="720" height="720" alt="Três padrões gráficos de curvas em areia, café e dourado" style="width:min(500px,100%)">
+      </div>
+    </div>
+  </section>
+
+  <!-- VERSÕES -->
+  <section class="painel marfim" id="versoes">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="rotulo" data-surge>Versões</p>
+        <h2 class="titulo" data-divide>Quatro fundos, <em>uma</em> marca</h2>
+        <p class="texto" data-surge>Dourado sobre areia é a versão principal. Café, dourado e preto entram em peças de contraste e no alto padrão.</p>
+      </div>
+      <div class="versoes">
+        <figure class="versao" data-surge><div class="cartao"><img src="img/v-creme.png" width="489" height="264" alt="Logotipo dourado sobre fundo areia"></div><p>Areia · principal</p></figure>
+        <figure class="versao" data-surge><div class="cartao"><img src="img/v-marrom.png" width="489" height="264" alt="Logotipo areia sobre fundo café"></div><p>Café</p></figure>
+        <figure class="versao" data-surge><div class="cartao"><img src="img/v-dourado.png" width="489" height="264" alt="Logotipo sobre fundo dourado"></div><p>Dourado</p></figure>
+        <figure class="versao" data-surge><div class="cartao"><img src="img/v-preto.png" width="489" height="264" alt="Logotipo dourado sobre fundo preto"></div><p>Preto · premium</p></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="painel preto manifesto" aria-label="Manifesto">
+    <svg class="fios" viewBox="0 0 1100 500" aria-hidden="true">
+      <path d="M10 80 C 260 50, 380 110, 540 250 S 900 470, 1090 150"/>
+      <path d="M10 150 C 260 120, 380 180, 540 320 S 900 540, 1090 220"/>
+      <path d="M10 220 C 260 190, 380 250, 540 390 S 900 610, 1090 290"/>
+    </svg>
+    <div class="wrap">
+      <p class="rotulo" style="margin-bottom:32px">Tom de voz</p>
+      <blockquote id="manifesto-frase"><span class="w">Sorrisos</span> <em class="w">reais.</em><br><span class="w">Histórias</span> <em class="w">únicas.</em></blockquote>
+      <div class="rodape-m">
+        <p class="texto" data-surge>Acolhedora, próxima e sofisticada. A marca fala primeiro das pessoas e de como elas se sentem, depois dos procedimentos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APLICAÇÕES -->
+  <section class="painel escuro" id="aplicacoes">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="rotulo" data-surge>Aplicações</p>
+        <h2 class="titulo" data-divide>A mesma elegância em todos os pontos de <em>contato</em>.</h2>
+      </div>
+      <div class="aplicacoes-grade">
+        <figure class="app"><div class="janela"><img src="img/app-retrato.png" width="792" height="1016" alt="Peça para redes sociais: mulher sorrindo com a frase Sorrisos reais, Histórias únicas" loading="lazy"></div><p>Redes sociais</p></figure>
+        <figure class="app"><div class="janela"><img src="img/app-fachada.png" width="772" height="1016" alt="Recepção da clínica com o logotipo Sorria Candeal aplicado na parede" loading="lazy"></div><p>Ambiente da clínica</p></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <footer class="painel cafe fim">
+    <div class="wrap">
+      <img src="img/logo-cafe.png" width="1022" height="504" alt="Logotipo Sorria Candeal em areia sobre fundo café" loading="lazy" data-surge>
+      <h2 data-surge>Obrigado.</h2>
+      <div class="creditos"><span>Sorria Candeal · Clínica Odontológica</span><span>Identidade visual · H2 Agência</span></div>
+      <a class="topo" href="#inicio">Voltar ao início</a>
+    </div>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function () {
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var temGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+
+  /* Copiar HEX */
+  document.querySelectorAll('.copiar').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var hex = b.getAttribute('data-hex');
+      var ok = function () { b.setAttribute('data-ok', ''); b.textContent = 'Copiado'; setTimeout(function () { b.removeAttribute('data-ok'); b.textContent = 'Copiar HEX'; }, 1600); };
+      var falha = function () {
+        var cod = b.parentElement.querySelector('.cod'); var r = document.createRange(); r.selectNodeContents(cod);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selecionado';
+        setTimeout(function () { b.textContent = 'Copiar HEX'; }, 1600);
+      };
+      try { navigator.clipboard.writeText(hex).then(ok, falha); } catch (e) { falha(); }
+    });
+  });
+
+  /* Sanfona: a cor em foco fica aberta */
+  var cores = document.querySelectorAll('.cor');
+  cores.forEach(function (c) {
+    c.addEventListener('mouseenter', function () { cores.forEach(function (x) { x.classList.remove('ativa'); }); c.classList.add('ativa'); });
+  });
+
+  /* Barra de progresso e item ativo do menu */
+  var barra = document.querySelector('.progresso');
+  function progresso() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    barra.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+  }
+  window.addEventListener('scroll', progresso, { passive: true }); progresso();
+  var links = {};
+  document.querySelectorAll('.menu nav a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) {
+        if (e.isIntersecting && links[e.target.id]) {
+          Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
+          links[e.target.id].setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
+  }
+
+  /* Cartões com inclinação 3D */
+  if (!reduz && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.cartao').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect(); var x = (e.clientX - r.left) / r.width - .5; var y = (e.clientY - r.top) / r.height - .5;
+        c.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) translateZ(0)';
+        c.style.boxShadow = (-x * 30) + 'px ' + (30 - y * 10) + 'px 60px rgba(46,35,27,.2)';
+      });
+      c.addEventListener('pointerleave', function () { c.style.transform = ''; c.style.boxShadow = ''; });
+    });
+  }
+
+  if (!temGsap || reduz) { document.documentElement.classList.remove('com-intro'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Rolagem suave: criada só depois da abertura, para nunca ficar travada */
+  var lenis = null;
+  function iniciarLenis() {
+    if (lenis || typeof window.Lenis === 'undefined' || document.compatMode !== 'CSS1Compat') return;
+    try {
+      lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { if (lenis) lenis.raf(t * 1000); });
+    } catch (e) { lenis = null; }
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (ev) {
+      var alvo = document.querySelector(a.getAttribute('href'));
+      if (!alvo) return;
+      ev.preventDefault();
+      if (lenis) lenis.scrollTo(alvo, { duration: 1.6 }); else alvo.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  /* Entrada da capa (toca quando a abertura termina) */
+  var entrada = gsap.timeline({ paused: true });
+  entrada
+    .from('.capa-texto > *', { y: 40, opacity: 0, duration: 1, ease: 'expo.out', stagger: .08 }, 0)
+    .from('.menu', { y: -30, opacity: 0, duration: 1, ease: 'expo.out', clearProps: 'transform' }, .2)
+    /* Linhas de construção: nascem da geometria real do logo, ficam um instante e somem */
+    .fromTo('.guias .g', { attr: { 'stroke-dashoffset': 1000 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 1.5, ease: 'power2.inOut', stagger: .07 }, .1)
+    .fromTo('.guias .gp', { opacity: 0, scale: 0, transformOrigin: '50% 50%' }, { opacity: .8, scale: 1, duration: .5, ease: 'back.out(2)', stagger: .06 }, 1.2)
+    .to('.guias-in', { opacity: 0, duration: 1.2, ease: 'power2.inOut' }, '+=1.3');
+
+  /* Abertura: frase da marca, depois a curva, depois o logo */
+  var intro = document.getElementById('intro');
+  var frase = document.getElementById('intro-frase');
+  var linhas = frase.querySelectorAll('.ln');
+  var sublinha = frase.querySelector('.sublinha path');
+  var historia = frase.querySelector('.w-historia');
+  /* Cada letra vira um bloco próprio, para animar só posição e opacidade (sem recalcular o texto) */
+  function separarLetras(el) {
+    Array.prototype.slice.call(el.childNodes).forEach(function (n) {
+      if (n.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        n.textContent.split('').forEach(function (ch) {
+          if (ch === ' ' || ch === '\n') { frag.appendChild(document.createTextNode(' ')); return; }
+          var s = document.createElement('span'); s.className = 'ch'; s.textContent = ch; frag.appendChild(s);
+        });
+        el.replaceChild(frag, n);
+      } else if (n.nodeType === 1 && n.tagName === 'EM') {
+        separarLetras(n);
+      }
+    });
+  }
+  linhas.forEach(function (ln) { separarLetras(ln); });
+  gsap.set(linhas, { clipPath: 'inset(-40% 100% -40% 0%)' });
+
+  /* Uma linha dourada atravessa o texto e o revela; as letras chegam afastadas e deslizam até o lugar */
+  function escrever(ln) {
+    var cur = ln.querySelector('.cursor');
+    var letras = ln.querySelectorAll('.ch');
+    var meio = (letras.length - 1) / 2;
+    var abre = function (i) { return (i - meio) * parseFloat(getComputedStyle(ln).fontSize) * .085; };
+    return gsap.timeline()
+      .fromTo(ln, { clipPath: 'inset(-40% 100% -40% 0%)' }, { clipPath: 'inset(-40% 0% -40% 0%)', duration: 1.7, ease: 'power2.inOut' }, 0)
+      .fromTo(cur, { left: '0%', opacity: 1 }, { left: '100%', duration: 1.7, ease: 'power2.inOut' }, 0)
+      .to(cur, { opacity: 0, duration: .5 }, 1.55)
+      .fromTo(letras, { x: abre, opacity: .15 }, { x: 0, opacity: 1, duration: 2.4, ease: 'power3.out', stagger: .02 }, 0);
+  }
+
+  var heroLogo = document.querySelector('.simbolo img');
+  var introLogo = intro.querySelector('.intro-logo');
+  var lgSorria = introLogo.querySelectorAll('.lg-sorria path');
+  var lgCandeal = introLogo.querySelectorAll('.lg-candeal path');
+  var lgCurva = introLogo.querySelector('.lg-curva');
+  var lgTag = introLogo.querySelectorAll('.lg-tag path');
+  gsap.set(introLogo, { xPercent: -50, yPercent: -50 });
+  gsap.set(heroLogo, { opacity: 0 });
+
+  var terminou = false;
+  function liberar() {
+    if (terminou) return; terminou = true;
+    gsap.set(heroLogo, { opacity: 1 });
+    intro.style.display = 'none';
+    document.documentElement.classList.remove('com-intro');
+    window.scrollTo(0, 0);
+    iniciarLenis();
+    ScrollTrigger.refresh();
+    if (entrada.progress() === 0) entrada.play();
+  }
+  /* Trava de segurança: libera a página mesmo que algo atrase a abertura */
+  setTimeout(function () { if (!terminou) { abertura.progress(1); entrada.progress(1); liberar(); } }, 16000);
+
+  /* Distância do logo central até o logo da capa (calculada na hora do voo) */
+  function alvo() {
+    var a = introLogo.getBoundingClientRect(), b = heroLogo.getBoundingClientRect();
+    var s = b.width / a.width;
+    return {
+      x: (b.left + b.width / 2) - (a.left + a.width / 2),
+      y: (b.top + b.height / 2) - (a.top + a.height / 2),
+      s: s
+    };
+  }
+  var voo = null;
+
+  var abertura = gsap.timeline({ delay: .15, onComplete: liberar });
+  abertura
+    /* 1. A frase é escrita por uma linha dourada */
+    .from('.intro-rotulo', { opacity: 0, letterSpacing: '.9em', duration: 1.8, ease: 'power3.out' }, 0)
+    .add(escrever(linhas[0]), .3)
+    .add(escrever(linhas[1]), 1.15)
+    .fromTo(sublinha, { attr: { 'stroke-dashoffset': 1000 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 1.1, ease: 'power2.inOut' }, 1.6)
+    .from(historia, { color: '#F1E0CE', duration: .9, ease: 'power2.out' }, 2.5)
+    .to({}, { duration: .8 })
+    /* 2. Saída: a frase inteira desfoca de uma vez, sem recortes */
+    .to(frase, { opacity: 0, y: -30, scale: 1.04, filter: 'blur(10px)', duration: .6, ease: 'power2.in' })
+    .to('.intro-rotulo', { opacity: 0, duration: .35 }, '<')
+    .to(intro, { backgroundColor: '#F1E0CE', duration: .8, ease: 'power2.inOut' }, '<.2')
+    /* 3. O logo se forma: cada letra traça o contorno e se preenche; o sorriso atravessa as letras */
+    .addLabel('logo', '-=.1')
+    .to(lgSorria, { attr: { 'stroke-dashoffset': 0 }, duration: 1.1, ease: 'power2.inOut', stagger: .09 }, 'logo')
+    .to(lgSorria, { fillOpacity: 1, duration: .7, ease: 'power1.out', stagger: .09 }, 'logo+=.65')
+    .to(lgCandeal, { attr: { 'stroke-dashoffset': 0 }, duration: 1.2, ease: 'power2.inOut', stagger: .08 }, 'logo+=.3')
+    .to(lgCandeal, { fillOpacity: 1, duration: .7, ease: 'power1.out', stagger: .08 }, 'logo+=.95')
+    .to(lgCurva, { attr: { 'stroke-dashoffset': 0 }, duration: 1.5, ease: 'power2.inOut' }, 'logo+=1.0')
+    .to(lgCurva, { fillOpacity: 1, duration: .6, ease: 'power1.out' }, 'logo+=2.1')
+    .fromTo(lgTag, { opacity: 0, y: 3 }, { opacity: 1, y: 0, duration: .8, ease: 'power3.out', stagger: .025 }, 'logo+=2.0')
+    .to([lgSorria, lgCandeal, lgCurva], { strokeOpacity: 0, duration: .5, ease: 'power1.out' }, 'logo+=2.5')
+    .to({}, { duration: .25 })
+    /* 5. O logo voa até o lugar dele na capa */
+    .add(function () {
+      var t = alvo();
+      voo = gsap.to(introLogo, { x: t.x, y: t.y, scale: t.s, duration: .95, ease: 'expo.inOut' });
+    })
+    .to(intro, { backgroundColor: 'rgba(241,224,206,0)', duration: .6, ease: 'power1.inOut' }, '+=.35')
+    .add(function () { entrada.play(); }, '-=.3')
+    .to({}, { duration: .15 });
+
+  document.getElementById('pular').addEventListener('click', function () {
+    if (voo) voo.progress(1);
+    abertura.progress(1);
+    entrada.progress(1);
+  });
+
+  /* Cena da capa: o símbolo vai ao centro e as guias se abrem */
+  var mm = gsap.matchMedia();
+  mm.add('(min-width: 900px)', function () {
+    var simb = document.querySelector('.simbolo');
+    var palco = document.querySelector('.palco');
+    var tl = gsap.timeline({ scrollTrigger: { trigger: '.cena', start: 'top top', end: 'bottom bottom', scrub: 1, invalidateOnRefresh: true } });
+    tl.to('.capa-texto', { x: -140, opacity: 0, ease: 'none', duration: .45 }, 0)
+      .to('.guias', { opacity: 0, scale: 1.25, transformOrigin: '50% 50%', ease: 'none', duration: .5 }, .15)
+      .to(simb, { x: function () { return palco.clientWidth / 2 - (simb.offsetLeft + simb.offsetWidth / 2); }, scale: 1.18, ease: 'power1.inOut', duration: .7 }, .1)
+      .to('.brilho', { opacity: .3, ease: 'none', duration: .6 }, .2);
+  });
+
+  /* Cada cena entra como um cartão que cresce */
+  gsap.utils.toArray('.painel').forEach(function (p) {
+    gsap.fromTo(p, { scale: .93, borderRadius: '72px 72px 0 0' }, {
+      scale: 1, borderRadius: '44px 44px 0 0', ease: 'none',
+      scrollTrigger: { trigger: p, start: 'top bottom', end: 'top 35%', scrub: true }
+    });
+  });
+
+  /* Títulos sobem palavra por palavra */
+  document.querySelectorAll('[data-divide]').forEach(function (h) {
+    var partes = [];
+    h.childNodes.forEach(function (n) {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach(function (t) { partes.push(t.trim() ? { t: t } : { espaco: t }); });
+      } else { partes.push({ el: n }); }
+    });
+    h.textContent = '';
+    partes.forEach(function (p) {
+      if (p.espaco !== undefined) { h.appendChild(document.createTextNode(' ')); return; }
+      var w = document.createElement('span'); w.className = 'palavra';
+      var i = document.createElement('span');
+      if (p.el) i.appendChild(p.el); else i.textContent = p.t;
+      w.appendChild(i); h.appendChild(w);
+    });
+    gsap.from(h.querySelectorAll('.palavra > span'), {
+      yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: .06,
+      scrollTrigger: { trigger: h, start: 'top 85%' }
+    });
+  });
+
+  /* Blocos surgem ao entrar na tela */
+  gsap.utils.toArray('[data-surge]').forEach(function (el) {
+    gsap.from(el, { y: 50, opacity: 0, duration: 1.15, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
+  });
+
+  /* Manifesto: palavras acendem com a rolagem */
+  gsap.fromTo('#manifesto-frase .w', { opacity: .14 }, {
+    opacity: 1, ease: 'none', stagger: .25,
+    scrollTrigger: { trigger: '.manifesto', start: 'top 65%', end: 'center 45%', scrub: true }
+  });
+  gsap.to('.manifesto .fios', { x: -120, ease: 'none', scrollTrigger: { trigger: '.manifesto', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+  /* Fotos com paralaxe */
+  gsap.utils.toArray('.janela').forEach(function (j) {
+    gsap.fromTo(j.querySelector('img'), { yPercent: -9 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: j, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
+  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+})();
+</script>
+
+</body>
+</html>
