@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap">
 <style>
+@font-face { font-family: "Loving Ambros"; src: url("fonts/loving-ambros.ttf") format("truetype"); font-display: swap; }
 /* Layout: cenas de tela cheia que deslizam umas sobre as outras como cartões, alternando areia e café.
    A curva do sorriso é o fio condutor: linhas de construção na capa, divisórias e padrões. Visual único e intencional (sem modo escuro). */
 :root {
@@ -27,6 +28,7 @@
   --rotulo: #7C5A3E;
   --creme-suave: #CDB59B;
 
+  --titulo: 'Loving Ambros', 'Montserrat', system-ui, sans-serif;
   --display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   --texto: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
 
@@ -49,7 +51,7 @@ body {
   overflow-x: hidden;
 }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--preto); }
-h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.02; margin: 0; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--titulo); font-weight: 400; font-style: normal !important; font-synthesis: none; line-height: 1.02; margin: 0; text-wrap: balance; }
 p, figure { margin: 0; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
